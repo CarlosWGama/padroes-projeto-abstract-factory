@@ -1,61 +1,45 @@
 package exemplo.classes;
 
 import exemplo.classes.linux.BotaoLinux;
+import exemplo.classes.linux.FabricaInterfaceLinux;
 import exemplo.classes.linux.InputLinux;
 import exemplo.classes.windows.BotaoWindows;
+import exemplo.classes.windows.FabricaInterfaceWindows;
 import exemplo.classes.windows.InputWindows;
 
 public class TelasUsuario {
 	
 	private final String SISTEMA_OPERACIONAL = "Windows";
+	private IFabricaInterfaceGrafica fabrica;
+	
+	public TelasUsuario() {
+		if (SISTEMA_OPERACIONAL.equals("Windows"))
+			fabrica = new FabricaInterfaceWindows(); 
+		else
+			fabrica = new FabricaInterfaceLinux(); 
+	}
 
 	public void telaCadastro() {
-		if (SISTEMA_OPERACIONAL.equals("Windows")) {
-			InputWindows inputNome = new InputWindows();
+			IInput inputNome = fabrica.getInput();
 			inputNome.exibirCampo();
 			
-			InputWindows inputSenha = new InputWindows();
+			IInput inputSenha = fabrica.getInput();
 			inputSenha.exibirCampo();
 			
-			BotaoWindows botao = new BotaoWindows();
+			IBotao botao = fabrica.getBotao();
 			botao.setTexto("Cadastrar");
 			botao.exibirBotao();
-			
-		} else if (SISTEMA_OPERACIONAL.equals("Linux")) {
-			InputLinux inputNome = new InputLinux();
-			inputNome.exibirCampo();
-			
-			InputLinux inputSenha = new InputLinux();
-			inputSenha.exibirCampo();
-			
-			BotaoLinux botao = new BotaoLinux();
-			botao.setTexto("Cadastrar");
-			botao.exibirBotao();
-		}
 	}
 	
 	public void telaEdicao() {
-		if (SISTEMA_OPERACIONAL.equals("Windows")) {
-			InputWindows inputNome = new InputWindows();
-			inputNome.exibirCampo();
-			
-			InputWindows inputSenha = new InputWindows();
-			inputSenha.exibirCampo();
-			
-			BotaoWindows botao = new BotaoWindows();
-			botao.setTexto("Editar");
-			botao.exibirBotao();
-			
-		} else if (SISTEMA_OPERACIONAL.equals("Linux")) {
-			InputLinux inputNome = new InputLinux();
-			inputNome.exibirCampo();
-			
-			InputLinux inputSenha = new InputLinux();
-			inputSenha.exibirCampo();
-			
-			BotaoLinux botao = new BotaoLinux();
-			botao.setTexto("Editar");
-			botao.exibirBotao();
-		}
+		IInput inputNome = fabrica.getInput();
+		inputNome.exibirCampo();
+		
+		IInput inputSenha = fabrica.getInput();
+		inputSenha.exibirCampo();
+		
+		IBotao botao = fabrica.getBotao();
+		botao.setTexto("Cadastrar");
+		botao.exibirBotao();
 	}
 }

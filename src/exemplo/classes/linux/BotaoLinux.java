@@ -1,6 +1,8 @@
 package exemplo.classes.linux;
 
-public class BotaoLinux {
+import exemplo.classes.IBotao;
+
+public class BotaoLinux implements IBotao {
 	
 	public String texto;
 	

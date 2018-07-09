@@ -1,6 +1,8 @@
 package exemplo.classes.windows;
 
-public class BotaoWindows {
+import exemplo.classes.IBotao;
+
+public class BotaoWindows implements IBotao {
 	
 	public String texto;
 	

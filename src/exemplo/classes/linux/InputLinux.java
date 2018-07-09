@@ -2,7 +2,9 @@ package exemplo.classes.linux;
 
 import java.util.Scanner;
 
-public class InputLinux {
+import exemplo.classes.IInput;
+
+public class InputLinux implements IInput {
 	private Scanner reader = new Scanner(System.in);
 	
 	public void exibirCampo() {
